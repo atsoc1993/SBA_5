@@ -1,5 +1,5 @@
 import express from 'express'
-import { PORT, MONGO_URI } from './constants.js'
+import { PORT, MONGO_URI } from './constants/constants.js'
 import mongoose from 'mongoose';
 import routes from './router/routes.js'
 
