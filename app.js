@@ -1,7 +1,7 @@
 import express from 'express'
 import { PORT, MONGO_URI } from './constants.js'
 import mongoose from 'mongoose';
-
+import routes from './router/routes.js'
 
 await mongoose.connect(MONGO_URI);
 
@@ -9,11 +9,11 @@ let app = express();
 
 app.use(express.json());
 
-app.use('/users', users);
+app.use('/users', routes.users);
 
-app.use('/posts', posts);
+app.use('/posts', routes.posts);
 
-app.use('/suggestions', suggestions);
+app.use('/suggestions', routes.suggestions);
 
 app.listen(PORT, () => {
     console.log(`Express app running @ http://localhost${PORT}`);
