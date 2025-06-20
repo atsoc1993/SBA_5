@@ -16,5 +16,5 @@ app.use('/posts', routes.posts);
 app.use('/suggestions', routes.suggestions);
 
 app.listen(PORT, () => {
-    console.log(`Express app running @ http://localhost${PORT}`);
+    console.log(`Express app running @ http://localhost:${PORT}`);
 });
