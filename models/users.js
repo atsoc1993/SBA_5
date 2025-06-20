@@ -1,0 +1,24 @@
+import mongoose from 'mongoose'
+
+let userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true
+    },
+    createdAt: {
+        type: Number,
+        default: new Date.now,
+        required: true,
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        default: 'Not Provided',
+        required: true
+    }
+});
+
+export default mongoose.model('Users', userSchema)
