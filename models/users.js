@@ -7,7 +7,7 @@ let userSchema = new mongoose.Schema({
     },
     createdAt: {
         type: Number,
-        default: new Date.now,
+        default: Date.now,
         required: true,
     },
     password: {

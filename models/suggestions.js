@@ -7,7 +7,7 @@ let suggestionSchema = new mongoose.Schema({
     },
     timePosted: {
         type: Number,
-        default: new Date.now,
+        default: Date.now,
         required: true
     },
     author: {
