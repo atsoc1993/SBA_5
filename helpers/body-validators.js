@@ -33,53 +33,52 @@ function validateSuggestionBody({ requestBody: body}) {
 };
 
 async function validatePostBody ({ req }) {
-        let userInfo = req.body
+        let userInfo = req.body;
 
         let error = null;
 
         if (!userInfo) {
-            error = new Error("Missing body with username and password")
-            error.status = 400
-            return error
-        }
+            error = new Error("Missing body with username and password");
+            error.status = 400;
+            return error;
+        };
         
         if (!userInfo.username | !userInfo.password) {
-            error = new Error("Missing username or password in body")
-            error.status = 400
-            return error
-        }
+            error = new Error("Missing username or password in body");
+            error.status = 400;
+            return error;
+        };
         
         if (!req.query.objectId) {
-            error = new Error("Update post title missing object ID query")
-            error.status = 400
-            return error
-        }
+            error = new Error("Update post title missing object ID query");
+            error.status = 400;
+            return error;
+        };
         
-        let currentPost = await Post.findById( req.query.objectId )
+        let currentPost = await Post.findById( req.query.objectId );
         
         if (!currentPost) {
-            error = new Error("Post ID does not exist")
-            error.status = 400
-            return error
-        }
+            error = new Error("Post ID does not exist");
+            error.status = 400;
+            return error;
+        };
         
         
         if (currentPost.author !== userInfo.username) {
-            error = new Error("Post not created by user attempting to update")
-            error.status = 400
-            return error
-        }
+            error = new Error("Post not created by user attempting to update");
+            error.status = 400;
+            return error;
+        };
         
-        let correctPassword = await getPasswordFromUsername( { username: userInfo.username })
+        let correctPassword = await getPasswordFromUsername( { username: userInfo.username });
         
         if (userInfo.password !== correctPassword) { 
-            error = new Error("Incorrect password for username")
-            error.status = 400
-            return error
-        }
+            error = new Error("Incorrect password for username");
+            error.status = 400;
+            return error;
+        };
         
-        
-        return error
-}
+        return error;
+};
 
 export { validatePostBody, validateUserBody, validateSuggestionBody } ;
