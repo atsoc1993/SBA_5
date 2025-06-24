@@ -14,9 +14,9 @@ users
         try {
 
             let newUser = req.body;
-
+            
             let validationResult = validateUserBody({ requestBody: newUser });
-
+            
             if (validationResult === '') {
 
                 let result = await User.create(newUser);

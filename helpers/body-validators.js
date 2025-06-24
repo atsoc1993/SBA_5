@@ -48,6 +48,26 @@ async function validatePostBody ({ req }) {
             return error;
         };
         
+
+        let correctPassword = await getPasswordFromUsername( { username: userInfo.username });
+
+        if (!correctPassword) {
+            error = new Error("User does not exist");
+            error.status = 400;
+            return error;
+        };
+        
+        if (userInfo.password !== correctPassword) { 
+            error = new Error("Incorrect password for username");
+            error.status = 400;
+            return error;
+        };
+        
+        return error;
+};
+
+async function validateUpdateRequest ({ req }) {
+
         if (!req.query.objectId) {
             error = new Error("Update post title missing object ID query");
             error.status = 400;
@@ -69,21 +89,7 @@ async function validatePostBody ({ req }) {
             return error;
         };
         
-        let correctPassword = await getPasswordFromUsername( { username: userInfo.username });
 
-        if (!correctPassword) {
-            error = new Error("User does not exist");
-            error.status = 400;
-            return error;
-        };
-        
-        if (userInfo.password !== correctPassword) { 
-            error = new Error("Incorrect password for username");
-            error.status = 400;
-            return error;
-        };
-        
-        return error;
-};
+}
 
 export { validatePostBody, validateUserBody, validateSuggestionBody } ;

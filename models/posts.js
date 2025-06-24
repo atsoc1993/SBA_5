@@ -20,5 +20,6 @@ let postSchema = new mongoose.Schema({
     }
 });
 
+postSchema.sync
 export default mongoose.model('Posts', postSchema)
 
