@@ -10,7 +10,6 @@ let suggestionSchema = new mongoose.Schema({
         type: Number,
         default: Date.now,
         required: true,
-        index: true
     },
     author: {
         type: String,
@@ -20,4 +19,5 @@ let suggestionSchema = new mongoose.Schema({
 });
 
 suggestionSchema.index( { timePosted: - 1 } );
+
 export default mongoose.model('Suggestions', suggestionSchema);

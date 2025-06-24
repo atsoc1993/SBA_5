@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import suggestions from './suggestions';
 
 let postSchema = new mongoose.Schema({
     title: {
@@ -20,8 +19,6 @@ let postSchema = new mongoose.Schema({
         required: true
     }
 });
-
-postSchema.index( { title: -1 })
 
 export default mongoose.model('Posts', postSchema)
 

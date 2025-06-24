@@ -70,6 +70,12 @@ async function validatePostBody ({ req }) {
         };
         
         let correctPassword = await getPasswordFromUsername( { username: userInfo.username });
+
+        if (!correctPassword) {
+            error = new Error("User does not exist");
+            error.status = 400;
+            return error;
+        };
         
         if (userInfo.password !== correctPassword) { 
             error = new Error("Incorrect password for username");
