@@ -29,15 +29,6 @@ users
         }
     })
 
-    .patch('/update_user', async (req, res) => {
-        console.log("Patch user endpoint hit");
-    })
-    
-    .delete('/delete_user', async (req, res) => {
-        console.log("Delete user endpoint hit");
-    });
-
-
 users.use((err, req, res, next) => {
     res.status(err.status).send(err.message)
 });

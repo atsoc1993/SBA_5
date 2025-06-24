@@ -29,12 +29,6 @@ suggestions
         }
     })
 
-    .patch('/update_suggestion', async (req, res) => {
-        console.log("Patch suggestion endpoint hit");
-    })
-    .delete('/delete_suggestion', async (req, res) => {
-        console.log("Delete suggestion endpoint hit");
-    });
 
 suggestions.use((err, req, res, next) => {
     res.status(err.status).send(err.message)

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 let suggestionSchema = new mongoose.Schema({
     body: {
@@ -9,7 +9,8 @@ let suggestionSchema = new mongoose.Schema({
     timePosted: {
         type: Number,
         default: Date.now,
-        required: true
+        required: true,
+        index: true
     },
     author: {
         type: String,
@@ -18,4 +19,5 @@ let suggestionSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('Suggestions', suggestionSchema)
+suggestionSchema.index( { timePosted: - 1 } );
+export default mongoose.model('Suggestions', suggestionSchema);
