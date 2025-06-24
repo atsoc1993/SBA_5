@@ -4,4 +4,4 @@ import suggestions from "./routes/suggestions.js";
 
 const routes = { posts, users, suggestions }; 
 
-export default routes
+export default routes;

@@ -11,23 +11,30 @@ users
     })
 
     .post('/add_user', async (req, res, next) => {
-        let newUser = req.body
-        let validationResult = validateUserBody({ requestBody: newUser })
-        if (validationResult === '') {
-            try {
+        try {
+
+            let newUser = req.body;
+
+            let validationResult = validateUserBody({ requestBody: newUser });
+
+            if (validationResult === '') {
+
                 let result = await User.create(newUser);
-                res.status(200).send(result)
-            } catch (err) {
-                let error = new Error(err)
-                error.status = 400
-                next(error)
-            }
-        } else {
-            let error = new Error(validationResult)
-            error.status = 400
-            next(error)
-        }
-    })
+                res.status(200).send(result);
+
+            } else {
+
+                let error = new Error(validationResult);
+                error.status = 400;
+                next(error);
+            };
+
+        } catch (err) {
+            let error = new Error(err);
+            error.status = 400;
+            next(error);
+        };
+    });
 
 users.use((err, req, res, next) => {
     res.status(err.status).send(err.message)

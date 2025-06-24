@@ -11,27 +11,33 @@ suggestions
     })
 
     .post('/add_suggestion', async (req, res, next) => {
-        let newSuggestion = req.body
-        let validationResult = validateSuggestionBody({ requestBody: newSuggestion })
+        let newSuggestion = req.body;
+
+        let validationResult = validateSuggestionBody({ requestBody: newSuggestion });
+
         if (validationResult === '') {
             try {
+
                 let result = await Suggestion.create(newSuggestion);
-                return res.status(200).send(result)
+                return res.status(200).send(result);
+
             } catch (err) {
-                let error = new Error(err)
-                error.status = 400
-                return next(error)
+
+                let error = new Error(err);
+                error.status = 400;
+                return next(error);
             }
+
         } else {
-            let error = new Error(validationResult)
-            error.status = 400
-            return next(error)
-        }
+            let error = new Error(validationResult);
+            error.status = 400;
+            return next(error);
+        };
     })
 
 
 suggestions.use((err, req, res, next) => {
-    res.status(err.status).send(err.message)
+    res.status(err.status).send(err.message);
 });
 
 export default suggestions;

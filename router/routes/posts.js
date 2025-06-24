@@ -9,7 +9,9 @@ posts
         try {
             let postsData = await Post.find({});
             return res.send(postsData).status(200);
+
         } catch (err) {
+
             let error = new Error(err);
             error.status = 500;
             return next(error);
@@ -20,7 +22,9 @@ posts
         try {
 
             let newPost = req.body;
+
             let validationResult = validatePostBody({ requestBody: newPost });
+
             if (validationResult === '') {
                 let result = await Post.create(newPost);
                 return res.status(200).send(result);
@@ -29,6 +33,7 @@ posts
                 error.status = 400;
                 return next(error);
             };
+
         } catch (err) {
             let error = new Error(err);
             error.status = 400;
@@ -53,6 +58,7 @@ posts
             } else {
                 return next(error);
             };
+
         } catch (err) {
             let error = new Error(err);
             error.status = 400;
@@ -62,6 +68,7 @@ posts
 
     .patch('/update_post/new_body', async (req, res, next) => {
         try {
+
             if (!req.query.newBody && !updatingTitle) {
                 let error = new Error("Did not include new body");
                 error.status = 400;
@@ -87,14 +94,13 @@ posts
     .delete('/delete_post', async (req, res, next) => {
         try {
             let error = await validatePostBody( { req: req } );
-            console.log(error);
+
             if (!error) {
                 let deleted = await Post.findByIdAndDelete( { _id: req.query.objectId });
                 res.send(deleted);
             } else {
                 return next(error);
             };
-        
 
         } catch (err) {
             let error = new Error(err);
