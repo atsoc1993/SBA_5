@@ -18,7 +18,7 @@ function validateUserBody({ requestBody: body}) {
 
 function validateSuggestionBody({ requestBody: body}) {
     let errorMessage = 'New suggestion missing the following elements: ';
-    let missingItemsAndItemStrings = [[!body.body, 'body'], [!body.author, 'author']];
+    let missingItemsAndItemStrings = [[!body.body, 'body']];
     if (!missingItemsAndItemStrings[0][0] && !missingItemsAndItemStrings[1][0]) {
         return '';
     } else {
