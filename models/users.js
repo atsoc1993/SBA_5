@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 let userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     createdAt: {
         type: Number,
@@ -22,3 +23,4 @@ let userSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('Users', userSchema)
+

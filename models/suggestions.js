@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 let suggestionSchema = new mongoose.Schema({
     body: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     timePosted: {
         type: Number,

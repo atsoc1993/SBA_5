@@ -3,7 +3,8 @@ import mongoose from 'mongoose'
 let postSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     timePosted: {
         type: Number,
@@ -20,3 +21,4 @@ let postSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('Posts', postSchema)
+
