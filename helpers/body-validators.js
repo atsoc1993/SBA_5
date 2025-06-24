@@ -1,7 +1,6 @@
 import Post from '../models/posts.js';
 import getPasswordFromUsername from '../helpers/get-password.js';
 
-
 function validateUserBody({ requestBody: body}) {
     let errorMessage = 'New user missing the following elements: ';
     let missingItemsAndItemStrings = [[!body.username, 'username'], [!body.password, 'password']];
